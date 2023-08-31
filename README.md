@@ -17,6 +17,7 @@ The Leadboard App is a simple Flask application for managing a team leaderboard 
    git clone https://github.com/YourUsername/leadboard-app.git
    cd leadboard-app
    python -m venv venv
+
 2. Activate the virtual environment and install dependencies:
    - On Windows:
      ```bash
