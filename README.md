@@ -42,8 +42,8 @@ The Leadboard App is a simple Flask application for managing a team leaderboard 
    ```bash
    flask run
 
-Open a web browser and go to [http://localhost:5000](http://localhost:5000) to access the leaderboard.
-Administrators can log in to update team points and create new teams.
+1. Open a web browser and go to [http://localhost:5000](http://localhost:5000) to access the leaderboard.
+2. Administrators can log in to update team points and create new teams
 
 ## Contributing
 
