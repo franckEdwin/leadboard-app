@@ -20,7 +20,6 @@ app.secret_key = 'your_secret_key_here'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///teams.db'
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
-
 migrate = Migrate(app, db)
 
 
@@ -31,6 +30,8 @@ def load_user(username):
         user.is_admin = users[username].get('is_admin', False)
         return user
     return None
+
+################################################################################
 
 class User(UserMixin):
     def __init__(self, username, is_admin=False):
@@ -46,18 +47,21 @@ users = {
     'admin': {'password': 'adminpassword', 'is_admin': True}
 }
 
+################################################################################
+
 class Team(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, nullable=False)
     points = db.Column(db.Integer, nullable=False)
-    image_path = db.Column(db.String(200))  # Champ pour le chemin de l'image
+    image_path = db.Column(db.String(200)) 
     
-    def __init__(self, name, points, image_path):  # Ajoutez le champ image_path au constructeur
+    def __init__(self, name, points, image_path): 
         self.name = name
         self.points = points
         self.image_path = image_path
 
 
+################################################################################
 
 @app.route('/')
 def leaderboard():
@@ -83,11 +87,15 @@ def login():
             return redirect(url_for('leaderboard'))
     return render_template('login.html')
 
+################################################################################
+
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+################################################################################
 
 @app.route('/update_points', methods=['GET', 'POST'])
 @login_required
@@ -96,7 +104,7 @@ def update_points():
         return "Accès refusé. Seul l'administrateur peut effectuer cette action."
     
     if request.method == 'POST':
-        team_id = int(request.form['team_id'])  # Utilisez 'team_id' au lieu de 'team'
+        team_id = int(request.form['team_id'])  
         new_points = int(request.form['points'])
         team = Team.query.get(team_id)
         if team:
@@ -109,6 +117,7 @@ def update_points():
     team = Team.query.get(team_id)
     return render_template('update_points.html', team=team, team_points=team.points, teams=Team.query.all())
 
+################################################################################
 
 @app.route('/create_team', methods=['GET', 'POST'])
 @login_required
@@ -117,11 +126,6 @@ def create_team():
         return "Accès refusé. Seul l'administrateur peut effectuer cette action."
     
     if request.method == 'POST':
-        # new_team = Team(
-        #     name=request.form['name'],
-        #     points=int(request.form['points']),
-        #     image=request.files['image'].filename  # Utilisez 'image' au lieu de 'image_url'
-        # )
         new_team = Team(
             name=request.form['name'], 
             points=int(request.form['points']), 
@@ -133,6 +137,7 @@ def create_team():
     
     return render_template('create_team.html')
 
+################################################################################
 
 @app.route('/edit_team/<int:team_id>', methods=['GET', 'POST'])
 @login_required
@@ -147,6 +152,8 @@ def edit_team(team_id):
         db.session.commit()
         return redirect(url_for('leaderboard'))
     return render_template('edit_team.html', team=team)
+
+################################################################################
 
 if __name__ == '__main__':
     app.run(debug=True)
