@@ -2,7 +2,29 @@
 
 The Leadboard App is a simple Flask application for managing a team leaderboard with their points. Administrators can update points and create new teams.
 
-## Dependencies
+## Table of Contents
+
+- [About the Project](#about-the-project)
+  - [Features](#features)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+
+## About the Project
+
+The Leadboard App is designed to help you keep track of team points and rankings. It provides a user-friendly interface for administrators to manage teams and update their points.
+
+### Features
+
+- Create and manage teams.
+- Update team points.
+- User authentication for administrators.
+- Simple and intuitive interface.
+
+### Built With
 
 - Python 3.8+
 - Flask 2.0.1+
@@ -10,7 +32,16 @@ The Leadboard App is a simple Flask application for managing a team leaderboard 
 - Flask-SQLAlchemy 3.0+
 - Flask-Migrate 3.0+
 
-## Installation
+## Getting Started
+
+### Prerequisites
+
+To run this application, you'll need the following:
+
+- Python 3.8+
+- pip (Python package manager)
+
+### Installation
 
 1. Clone this repository and set up the virtual environment:
    ```bash
@@ -31,7 +62,8 @@ The Leadboard App is a simple Flask application for managing a team leaderboard 
      ```   
 
 3. Set up the secret key in the `.env` file:
-   Create a file named `.env` in the root directory of the project. Inside the `.env` file, set a secret key for your application. You can generate a random secret key using Python or any other secure method. For example:
+   Create a file named `.env` in the root directory of the project. Inside the `.env` file, set a secret key for your application.
+   You can generate a random secret key using Python or any other secure method. For example:
    ```plaintext
    SECRET_KEY=mysecretkey123
 
